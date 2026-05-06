@@ -1,87 +1,85 @@
 "use client";
 
 import { motion } from "motion/react";
-import { MapPin } from "lucide-react";
-import { SectionHeader } from "@/components/ui/section-header";
 
 const deals = [
-  {
-    name: "Two Property Portfolio: Courtyard Houston / Hampton Inn & Suites I-10 W-Park Row",
-    address: "18010 Park Row Blvd, Houston, TX 77084",
-    rooms: 267,
-  },
-  {
-    name: "Vernon Hospitality Two-Pack Portfolio",
-    address: "700 Hillcrest Dr, Vernon, TX 76384",
-    rooms: 124,
-  },
-  {
-    name: "Staybridge Suites Las Cruces",
-    address: "2651 E Northrise Dr, Las Cruces, NM 88011",
-    rooms: 115,
-  },
-  {
-    name: "Fairfield Inn & Suites Dallas Cedar Hill",
-    address: "409 N Clark Rd, Cedar Hill, TX 75104",
-    rooms: 90,
-  },
-  {
-    name: "Comfort Suites Johnson Creek Conference Center",
-    address: "725 Paradise Ln, Johnson Creek, WI 53038",
-    rooms: 100,
-  },
+  { name: "Courtyard Houston / Hampton Inn & Suites I-10 Park Row", city: "Houston, Texas", rooms: 267 },
+  { name: "Vernon Hospitality Two-Pack Portfolio", city: "Vernon, Texas", rooms: 124 },
+  { name: "Staybridge Suites Las Cruces", city: "Las Cruces, New Mexico", rooms: 115 },
+  { name: "Fairfield Inn & Suites Cedar Hill", city: "Cedar Hill, Texas", rooms: 90 },
+  { name: "Comfort Suites Johnson Creek Conference Center", city: "Johnson Creek, Wisconsin", rooms: 100 },
 ];
 
 export default function UnderContract() {
   return (
-    <section id="under-contract">
-      <SectionHeader title="Under Contract" label="In Escrow" />
+    <section id="under-contract" className="bg-black py-24 md:py-32 lg:py-40">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+          className="text-center mb-14 md:mb-20"
+        >
+          <p className="text-[#86868b] text-[15px] tracking-[-0.014em] mb-3">
+            In escrow
+          </p>
+          <h2
+            className="text-white font-semibold"
+            style={{
+              fontSize: "clamp(2.5rem, 5.6vw, 5rem)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.045em",
+            }}
+          >
+            Under contract.
+          </h2>
+        </motion.div>
 
-      <div className="bg-white py-20 lg:py-24">
-        <div className="mx-auto max-w-[1440px] px-8 lg:px-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {deals.map((d, i) => (
-              <motion.div
-                key={d.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.45, delay: (i % 3) * 0.05 }}
-                className="relative bg-gradient-to-br from-[#0e1a34] to-[#152249] ring-1 ring-white/10 rounded-2xl p-7 text-white overflow-hidden"
-              >
-                <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#4e8eff]/20 blur-3xl" />
-                <div className="relative">
-                  <div className="flex items-center gap-2 mb-5">
-                    <span className="inline-flex h-2 w-2 rounded-full bg-[#4ade80] animate-pulse" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4ade80]">
-                      Under Contract
-                    </span>
-                  </div>
-
-                  <h3 className="font-bold text-[17px] leading-[1.3] tracking-[-0.012em] mb-4 min-h-[3.5em]">
-                    {d.name}
-                  </h3>
-
-                  <p className="flex items-start gap-2 text-white/70 text-[13px] leading-snug">
-                    <MapPin className="h-4 w-4 shrink-0 mt-[2px] text-white/50" />
-                    {d.address}
-                  </p>
-
-                  <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between">
-                    <div>
-                      <span className="text-2xl font-bold tabular-nums tracking-tight">
-                        {d.rooms}
-                      </span>
-                      <span className="text-[12px] text-white/60 font-medium ml-1.5">keys</span>
-                    </div>
-                    <span className="text-[11px] uppercase tracking-[0.16em] text-white/50 font-medium">
-                      In Escrow
-                    </span>
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {deals.map((d, i) => (
+            <motion.div
+              key={d.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.6, delay: (i % 3) * 0.06, ease: [0.32, 0.72, 0, 1] }}
+              className="group relative bg-[#1d1d1f] rounded-[28px] p-8 lg:p-10 overflow-hidden hover:bg-[#252527] transition-colors duration-500 aspect-[5/4] flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center gap-2 mb-5">
+                  <span className="inline-flex h-1.5 w-1.5 rounded-full bg-[#30d158] animate-pulse" />
+                  <span className="text-[#30d158] text-[11px] uppercase tracking-[0.18em] font-medium">
+                    In escrow
+                  </span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <h3
+                  className="text-white font-semibold"
+                  style={{
+                    fontSize: "clamp(1.375rem, 2vw, 1.875rem)",
+                    lineHeight: 1.15,
+                    letterSpacing: "-0.025em",
+                  }}
+                >
+                  {d.name}
+                </h3>
+              </div>
+
+              <div className="flex items-end justify-between">
+                <div>
+                  <span className="block text-white font-semibold tabular-nums text-[2.5rem] leading-none tracking-[-0.04em]">
+                    {d.rooms}
+                  </span>
+                  <span className="block text-[#86868b] text-[12px] mt-1 uppercase tracking-[0.18em] font-medium">
+                    Keys
+                  </span>
+                </div>
+                <span className="text-[#86868b] text-[13px] tracking-[-0.01em]">
+                  {d.city}
+                </span>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

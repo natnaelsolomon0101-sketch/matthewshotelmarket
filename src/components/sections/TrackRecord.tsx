@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { SectionHeader } from "@/components/ui/section-header";
 
 const deals = [
   { name: "Hampton Inn", location: "Jacksonville, FL", img: "/images/hotels/hampton-inn.jpg" },
@@ -29,70 +28,63 @@ const deals = [
 
 export default function TrackRecord() {
   return (
-    <section id="track-record">
-      <SectionHeader title="Track Record" label={`${deals.length} Notable Sales`} />
-
-      <div className="bg-[#fafafa] py-20 lg:py-24">
-        <div className="mx-auto max-w-[1440px] px-8 lg:px-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl mb-12"
+    <section id="track-record" className="bg-[#f5f5f7] py-24 md:py-32 lg:py-40">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+          className="text-center mb-16 md:mb-20"
+        >
+          <p className="text-[#86868b] text-[15px] tracking-[-0.014em] mb-3">
+            Track record
+          </p>
+          <h2
+            className="text-[#1d1d1f] font-semibold"
+            style={{
+              fontSize: "clamp(2.5rem, 5.6vw, 5rem)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.045em",
+            }}
           >
-            <h2
-              className="font-black text-[#0e1a34] uppercase"
-              style={{
-                fontSize: "clamp(2rem, 3.4vw, 3rem)",
-                lineHeight: 0.98,
-                letterSpacing: "-0.035em",
-              }}
-            >
-              Recent transactions
-            </h2>
-            <p className="mt-5 text-[#0b0b0f] text-[16px] leading-[1.7] tracking-[-0.005em] max-w-[58ch]">
-              Select hospitality transactions completed by the Matthews Hotel
-              Market team across the U.S. — limited service, branded extended
-              stay, and full-service assets.
-            </p>
-          </motion.div>
+            Recently sold.
+          </h2>
+        </motion.div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {deals.map((d, i) => (
-              <motion.div
-                key={`${d.name}-${d.location}`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.4, delay: (i % 5) * 0.04 }}
-                className="group bg-white rounded-2xl ring-1 ring-black/5 overflow-hidden shadow-[0_1px_2px_rgba(15,23,42,0.04)] card-hover-lift"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#eef0f4]">
-                  <Image
-                    src={d.img}
-                    alt={`${d.name} - ${d.location}`}
-                    fill
-                    quality={88}
-                    sizes="(max-width: 768px) 50vw, 280px"
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e1a34]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="absolute top-2.5 left-2.5 inline-flex items-center rounded-full bg-white/95 backdrop-blur px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-[#0e1a34]">
-                    Sold
-                  </span>
-                </div>
-                <div className="px-3 py-3">
-                  <p className="text-[12.5px] font-bold text-[#0e1a34] leading-tight tracking-[-0.01em]">
-                    {d.name}
-                  </p>
-                  <p className="mt-1 text-[10.5px] text-[#86868b] font-medium">
-                    {d.location}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+          {deals.map((d, i) => (
+            <motion.div
+              key={`${d.name}-${d.location}`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.5, delay: (i % 4) * 0.05, ease: [0.32, 0.72, 0, 1] }}
+              className="group bg-white rounded-[22px] overflow-hidden transition-all duration-500 hover:scale-[1.015] hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.18)]"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#e8e8ed]">
+                <Image
+                  src={d.img}
+                  alt={`${d.name} — ${d.location}`}
+                  fill
+                  quality={88}
+                  sizes="(max-width: 768px) 50vw, 320px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
+                <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/95 backdrop-blur px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#1d1d1f]">
+                  Sold
+                </span>
+              </div>
+              <div className="px-5 py-4">
+                <p className="text-[#1d1d1f] font-medium text-[15px] tracking-[-0.014em] leading-tight">
+                  {d.name}
+                </p>
+                <p className="mt-1 text-[#86868b] text-[12.5px] tracking-[-0.01em]">
+                  {d.location}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
