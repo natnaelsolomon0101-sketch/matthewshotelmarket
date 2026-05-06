@@ -10,7 +10,6 @@ const menuItems = [
   { name: "Listings", href: "#listings" },
   { name: "Under Contract", href: "#under-contract" },
   { name: "Track Record", href: "#track-record" },
-  { name: "Team", href: "#team" },
   { name: "Offices", href: "#offices" },
   { name: "Contact", href: "#contact" },
 ];

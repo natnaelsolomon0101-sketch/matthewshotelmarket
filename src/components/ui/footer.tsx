@@ -5,7 +5,6 @@ const navLinks = [
   { title: "Listings", href: "#listings" },
   { title: "Under Contract", href: "#under-contract" },
   { title: "Track Record", href: "#track-record" },
-  { title: "Team", href: "#team" },
   { title: "Offices", href: "#offices" },
   { title: "Contact", href: "#contact" },
 ];

@@ -110,10 +110,7 @@ export default function Listings() {
                 transition={{ duration: 0.45, delay: (i % 3) * 0.05 }}
                 className="group bg-white ring-1 ring-black/5 rounded-2xl p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_20px_40px_-24px_rgba(15,23,42,0.10)] card-hover-lift flex flex-col"
               >
-                <div className="flex items-start justify-between gap-3 mb-5">
-                  <span className="inline-flex items-center rounded-full bg-[#eef3ff] text-[#1a56db] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em]">
-                    {l.brand}
-                  </span>
+                <div className="flex items-start justify-end gap-3 mb-5">
                   <ArrowUpRight className="h-5 w-5 text-[#9aa0a8] group-hover:text-[#1a56db] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
                 </div>
 
