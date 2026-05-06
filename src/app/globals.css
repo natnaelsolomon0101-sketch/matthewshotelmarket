@@ -1,0 +1,251 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  color: #0b0b0f;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  letter-spacing: -0.022em;
+  /* Inter stylistic alternates: ss01 (single-storey a), cv11 (open 4),
+     tnum off for body so numerals fit proportionally in prose. Plus the
+     standard kerning/ligatures/contextual alternates. */
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "cv11" 1;
+}
+
+h1, h2, h3, h4 {
+  font-style: normal;
+  letter-spacing: -0.025em;
+}
+
+h1 { letter-spacing: -0.03em; }
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Force Leaflet popups/tooltips to inherit the site font instead of
+   defaulting to Helvetica. */
+.leaflet-container,
+.leaflet-popup-content,
+.leaflet-tooltip {
+  font-family: inherit;
+}
+
+/* Apple-style text selection: brand navy at low alpha instead of browser blue. */
+::selection {
+  background-color: rgba(14, 26, 52, 0.18);
+  color: #0b0b0f;
+}
+
+/* Accessible focus ring: only shows on keyboard navigation (:focus-visible),
+   never on mouse click. Subtle brand-blue glow, matches iOS/macOS feel. */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid #4e8eff;
+  outline-offset: 2px;
+  border-radius: 4px;
+  transition: outline-offset 120ms ease-out;
+}
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline-offset: 3px;
+}
+
+/* Tactile press feedback on every button and role="button" — mouse + touch. */
+button,
+[role="button"] {
+  transition: transform 120ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+button:active,
+[role="button"]:active {
+  transform: scale(0.98);
+}
+
+/* Respect prefers-reduced-motion globally. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.card-hover-lift {
+  transition: transform 400ms cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 400ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: auto;
+}
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  will-change: transform, box-shadow;
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.04),
+    0 28px 56px -20px rgba(15, 23, 42, 0.22),
+    0 10px 20px -10px rgba(15, 23, 42, 0.10);
+}
+
+@media (min-resolution: 2dppx) {
+  .card-hover-lift:hover {
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.03),
+      0 24px 52px -18px rgba(15, 23, 42, 0.18),
+      0 8px 16px -8px rgba(15, 23, 42, 0.08);
+  }
+  hr, .border, .border-t, .border-b, .border-l, .border-r {
+    border-width: 0.5px;
+  }
+}
+
+.no-js [style*="opacity:0"],
+.no-js [style*="opacity: 0"] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@theme inline {
+  --animate-border-beam: border-beam calc(var(--duration)*1s) infinite linear;
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --ring: var(----ring);
+  --input: var(----input);
+  --border: var(----border);
+  --warning-foreground: var(----warning-foreground);
+  --warning: var(----warning);
+  --success-foreground: var(----success-foreground);
+  --success: var(----success);
+  --info-foreground: var(----info-foreground);
+  --info: var(----info);
+  --destructive-foreground: var(----destructive-foreground);
+  --destructive: var(----destructive);
+  --accent-foreground: var(----accent-foreground);
+  --accent: var(----accent);
+  --muted-foreground: var(----muted-foreground);
+  --muted: var(----muted);
+  --secondary-foreground: var(----secondary-foreground);
+  --primary-foreground: var(----primary-foreground);
+  --popover-foreground: var(----popover-foreground);
+  --popover: var(----popover);
+  --card-foreground: var(----card-foreground);
+  --card: var(----card);
+  --foreground: var(----foreground);
+  --background: var(----background);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: 0.5rem;
+  --radius-md: 0.375rem;
+}
+
+:root {
+  ----background: #ffffff;
+  ----foreground: #1d1d1f;
+  ----card: #ffffff;
+  ----card-foreground: #1d1d1f;
+  ----popover: #ffffff;
+  ----popover-foreground: #1d1d1f;
+  --primary: #0e1a34;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f3f4;
+  --secondary-foreground: #0e1a34;
+  --muted: #f3f3f4;
+  --muted-foreground: #64748b;
+  --accent: #4e8eff;
+  --accent-foreground: #ffffff;
+  ----destructive: #ef4444;
+  --destructive-foreground: var(--color-red-700);
+  --info: var(--color-blue-500);
+  --info-foreground: var(--color-blue-700);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-700);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-amber-700);
+  ----border: #e2e8f0;
+  ----input: #e2e8f0;
+  ----ring: #4e8eff;
+}
+
+.dark {
+  ----background: #0f111b;
+  ----foreground: #f3f3f4;
+  ----card: #1a1d2e;
+  ----card-foreground: #f3f3f4;
+  ----popover: #1a1d2e;
+  ----popover-foreground: #f3f3f4;
+  --primary: #4e8eff;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
+  --secondary-foreground: #f3f3f4;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #4e8eff;
+  --accent-foreground: #ffffff;
+  ----destructive: #ef4444;
+  --destructive-foreground: var(--color-red-400);
+  --info: var(--color-blue-500);
+  --info-foreground: var(--color-blue-400);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-400);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-amber-400);
+  ----border: #334155;
+  ----input: #334155;
+  ----ring: #4e8eff;
+}
+
+body {
+  background: var(----background);
+  color: var(----foreground);
+}
+
+/* Matthews brand colors */
+.matthews-deep-blue { color: #0e1a34; }
+.matthews-deepest-blue { color: #0f111b; }
+.bg-matthews-deep-blue { background-color: #0e1a34; }
+.bg-matthews-deepest-blue { background-color: #0f111b; }
+.bg-matthews-electric-blue { background-color: #4e8eff; }
+.text-matthews-electric-blue { color: #4e8eff; }
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
