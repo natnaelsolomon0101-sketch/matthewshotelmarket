@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { ChevronRight } from "lucide-react";
 
 const deals = [
   { name: "Hampton Inn", location: "Jacksonville, FL", img: "/images/hotels/hampton-inn.jpg" },
@@ -28,62 +29,67 @@ const deals = [
 
 export default function TrackRecord() {
   return (
-    <section id="track-record" className="bg-[#f5f5f7] py-24 md:py-32 lg:py-40">
-      <div className="mx-auto max-w-[1280px] px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
-          className="text-center mb-16 md:mb-20"
-        >
-          <p className="text-[#86868b] text-[15px] tracking-[-0.014em] mb-3">
-            Track record
-          </p>
+    <section id="track-record" className="bg-white py-16 md:py-20 lg:py-24">
+      <div className="max-w-[1024px] mx-auto px-6">
+        <div className="flex items-end justify-between gap-6 mb-7 md:mb-9 flex-wrap">
           <h2
-            className="text-[#1d1d1f] font-semibold"
+            className="font-semibold flex-1 min-w-0"
             style={{
-              fontSize: "clamp(2.5rem, 5.6vw, 5rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.045em",
+              fontSize: "clamp(1.5rem, 2.6vw, 2rem)",
+              lineHeight: 1.15,
+              letterSpacing: "-0.025em",
             }}
           >
-            Recently sold.
+            <span className="text-[#1d1d1f]">Recently sold.</span>{" "}
+            <span className="text-[#86868b]">Select transactions completed by the team.</span>
           </h2>
-        </motion.div>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-1 text-[#0071e3] text-[15px] tracking-[-0.014em] hover:underline shrink-0"
+          >
+            View all
+            <ChevronRight className="h-4 w-4" />
+          </a>
+        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          {deals.map((d, i) => (
-            <motion.div
-              key={`${d.name}-${d.location}`}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {deals.map((deal, i) => (
+            <motion.article
+              key={`${deal.name}-${deal.location}-${i}`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.5, delay: (i % 4) * 0.05, ease: [0.32, 0.72, 0, 1] }}
-              className="group bg-white rounded-[22px] overflow-hidden transition-all duration-500 hover:scale-[1.015] hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.18)]"
+              transition={{
+                duration: 0.5,
+                delay: (i % 4) * 0.05,
+                ease: [0.32, 0.72, 0, 1],
+              }}
+              className="group bg-white rounded-[18px] overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_16px_-8px_rgba(0,0,0,0.08)] hover:scale-[1.015] transition-transform duration-500"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-[#e8e8ed]">
-                <Image
-                  src={d.img}
-                  alt={`${d.name} — ${d.location}`}
-                  fill
-                  quality={88}
-                  sizes="(max-width: 768px) 50vw, 320px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                />
-                <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/95 backdrop-blur px-3 py-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#1d1d1f]">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="absolute inset-0 group-hover:scale-[1.04] transition-transform duration-700">
+                  <Image
+                    src={deal.img}
+                    alt={`${deal.name} — ${deal.location}`}
+                    fill
+                    quality={88}
+                    sizes="(max-width:768px) 50vw, 280px"
+                    className="object-cover"
+                  />
+                </div>
+                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur rounded-full px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-[#1d1d1f] font-medium">
                   Sold
                 </span>
               </div>
               <div className="px-5 py-4">
-                <p className="text-[#1d1d1f] font-medium text-[15px] tracking-[-0.014em] leading-tight">
-                  {d.name}
-                </p>
+                <h3 className="text-[#1d1d1f] font-medium text-[15px] tracking-[-0.014em] leading-tight">
+                  {deal.name}
+                </h3>
                 <p className="mt-1 text-[#86868b] text-[12.5px] tracking-[-0.01em]">
-                  {d.location}
+                  {deal.location}
                 </p>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

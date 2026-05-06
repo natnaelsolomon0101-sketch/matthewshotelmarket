@@ -1,101 +1,82 @@
 "use client";
 
 import { motion } from "motion/react";
+import { TrendingUp, Users, Network, Award } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const pillars = [
+const ease = [0.32, 0.72, 0, 1] as const;
+
+type Benefit = {
+  icon: LucideIcon;
+  title: string;
+  body: string;
+};
+
+const benefits: Benefit[] = [
   {
-    eyebrow: "Market intelligence",
-    headline: "Information,\nnot just listings.",
-    body: "Proprietary research on supply, demand, ADR, and cap rates across 30+ markets. Sellers price with confidence. Buyers underwrite with conviction.",
+    icon: TrendingUp,
+    title: "Market intelligence.",
+    body: "Proprietary research on supply, demand, ADR, and cap rates across 30+ markets.",
   },
   {
-    eyebrow: "Investor reach",
-    headline: "Over 1 million\nrelationships.",
-    body: "Direct lines to hotel investors, family offices, REITs, and institutional capital. The right buyer for every brand, scale, and class.",
+    icon: Users,
+    title: "1M+ investors.",
+    body: "Direct lines to hotel investors, family offices, REITs, and institutional capital.",
   },
   {
-    eyebrow: "Coast-to-coast",
-    headline: "30+ offices.\nOne team.",
-    body: "Local market expertise with national reach. Off-market deals surface first when every sub-market has someone listening.",
+    icon: Network,
+    title: "30+ offices nationwide.",
+    body: "Local expertise. National reach. Off-market deals surface first.",
   },
   {
-    eyebrow: "Track record",
-    headline: "$84.3 billion\nclosed.",
-    body: "Matthews has executed across every CRE asset class. Hospitality clients tap a platform proven at every scale and structure.",
+    icon: Award,
+    title: "$84.3B closed.",
+    body: "Proven across every CRE asset class. Hospitality clients tap a platform that scales.",
   },
 ];
 
 export default function WhyChoose() {
   return (
-    <section id="why" className="bg-white py-24 md:py-32 lg:py-40">
-      <div className="mx-auto max-w-[1280px] px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+    <section id="why" className="bg-[#f5f5f7] py-16 md:py-20 lg:py-24">
+      <div className="max-w-[1024px] mx-auto px-6">
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
-          className="text-center mb-16 md:mb-24"
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.5, ease }}
+          className="font-semibold mb-9"
+          style={{
+            fontSize: "clamp(1.5rem, 2.6vw, 2rem)",
+            lineHeight: 1.15,
+            letterSpacing: "-0.025em",
+          }}
         >
-          <p className="text-[#86868b] text-[15px] tracking-[-0.014em] mb-3">
-            Why Matthews
-          </p>
-          <h2
-            className="text-[#1d1d1f] font-semibold mx-auto max-w-[920px]"
-            style={{
-              fontSize: "clamp(2.5rem, 5.6vw, 5rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.045em",
-            }}
-          >
-            A leader in hotel investment sales.
-          </h2>
-        </motion.div>
+          <span className="text-[#1d1d1f]">The Matthews difference.</span>{" "}
+          <span className="text-[#86868b]">Why owners and investors choose us.</span>
+        </motion.h2>
 
-        <div className="space-y-5 lg:space-y-6">
-          {pillars.map((p, i) => (
-            <motion.div
-              key={p.eyebrow}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
-              className={`relative rounded-[28px] overflow-hidden p-10 md:p-16 lg:p-20 ${
-                i % 2 === 0
-                  ? "bg-[#f5f5f7] text-[#1d1d1f]"
-                  : "bg-[#1d1d1f] text-white"
-              }`}
-            >
-              <p
-                className={`text-[14px] tracking-[-0.014em] mb-4 ${
-                  i % 2 === 0 ? "text-[#86868b]" : "text-[#86868b]"
-                }`}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {benefits.map((b, i) => {
+            const Icon = b.icon;
+            return (
+              <motion.div
+                key={b.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.5, ease, delay: i * 0.05 }}
+                className="bg-white rounded-[18px] p-6 md:p-7 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_16px_-8px_rgba(0,0,0,0.08)]"
               >
-                {p.eyebrow}
-              </p>
-              <h3
-                className="font-semibold whitespace-pre-line max-w-[820px]"
-                style={{
-                  fontSize: "clamp(2rem, 4.4vw, 4rem)",
-                  lineHeight: 1.07,
-                  letterSpacing: "-0.04em",
-                }}
-              >
-                {p.headline}
-              </h3>
-              <p
-                className={`mt-7 max-w-[640px] ${
-                  i % 2 === 0 ? "text-[#424245]" : "text-[#a1a1a6]"
-                }`}
-                style={{
-                  fontSize: "clamp(1.0625rem, 1.3vw, 1.25rem)",
-                  lineHeight: 1.5,
-                  letterSpacing: "0.011em",
-                }}
-              >
-                {p.body}
-              </p>
-            </motion.div>
-          ))}
+                <Icon className="h-7 w-7 text-[#0071e3] mb-4" strokeWidth={1.75} />
+                <h3 className="text-[#1d1d1f] font-semibold text-[17px] leading-tight tracking-[-0.014em] mb-2">
+                  {b.title}
+                </h3>
+                <p className="text-[#424245] text-[14px] leading-[1.5]">
+                  {b.body}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
