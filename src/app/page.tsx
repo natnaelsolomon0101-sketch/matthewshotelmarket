@@ -4,6 +4,7 @@ import Listings from "@/components/sections/Listings";
 import UnderContract from "@/components/sections/UnderContract";
 import WhyChoose from "@/components/sections/WhyChoose";
 import TrackRecord from "@/components/sections/TrackRecord";
+import Closings from "@/components/sections/Closings";
 import Contact from "@/components/sections/Contact";
 import Offices from "@/components/sections/Offices";
 import Footer from "@/components/ui/footer";
@@ -17,6 +18,7 @@ export default function Home() {
       <UnderContract />
       <WhyChoose />
       <TrackRecord />
+      <Closings />
       <Contact />
       <Offices />
       <Footer />
