@@ -4,7 +4,9 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { ChevronRight } from "lucide-react";
 
-const deals = [
+type Deal = { name: string; location: string; img?: string };
+
+const deals: Deal[] = [
   { name: "Hampton Inn", location: "Jacksonville, FL", img: "/images/hotels/hampton-inn.jpg" },
   { name: "Best Western Plus", location: "Columbiana, OH", img: "/images/hotels/best-western-plus.jpg" },
   { name: "Holiday Inn", location: "San Antonio, TX", img: "/images/hotels/holiday-inn.jpg" },
@@ -25,6 +27,38 @@ const deals = [
   { name: "Studio Res", location: "Panama City Beach, FL", img: "/images/hotels/studio-res-pcb.jpg" },
   { name: "Sea Glass Inn", location: "Melbourne, FL", img: "/images/hotels/sea-glass-melbourne.jpg" },
   { name: "LivSmart Studios", location: "Mobile, AL", img: "/images/hotels/livsmart-mobile.jpg" },
+  { name: "Hampton + Home2 Suites", location: "Austin, TX" },
+  { name: "Tampa Boutique Multifamily", location: "Tampa, FL" },
+  { name: "Home2 Suites by Hilton", location: "Del Rio, TX" },
+  { name: "Dual Brand Hampton Inn + Home2 Suites", location: "Austin, TX" },
+  { name: "Hampton Inn", location: "Beaumont, TX" },
+  { name: "Home2 Suites", location: "Columbus, OH" },
+  { name: "Hampton Inn & Suites", location: "Altoona, IA" },
+  { name: "La Quinta Inn & Suites", location: "Waco, TX" },
+  { name: "Holiday Inn Express", location: "Early, TX" },
+  { name: "Firebrand Hotel", location: "Whitefish, MT" },
+  { name: "Home2 Suites", location: "Hanford, CA" },
+  { name: "Hampton Inn & Home2 Suites", location: "Tulsa, OK" },
+  { name: "Marble Falls Hotel", location: "Marble Falls, TX" },
+  { name: "Quality Inn", location: "Carthage, TX" },
+  { name: "Home2 Suites", location: "Merrillville, IN" },
+  { name: "Home2 Suites", location: "Austin, TX" },
+  { name: "Holiday Inn", location: "Vidor, TX" },
+  { name: "Residence Inn", location: "San Marcos, TX" },
+  { name: "Staybridge Suites", location: "Austin, TX" },
+  { name: "Country Inn & Suites", location: "Augusta, GA" },
+  { name: "Hampton Inn Portfolio", location: "Atlanta, GA" },
+  { name: "Crowne Plaza Downtown", location: "Dallas, TX" },
+  { name: "Radisson Hotel", location: "Corning, NY" },
+  { name: "Hilton Garden Inn", location: "Bozeman, MT" },
+  { name: "Hampton Inn & Suites", location: "Beaumont, TX" },
+  { name: "Stone Mountain Lodge", location: "Lyons, CO" },
+  { name: "Holiday Inn Express", location: "Augusta, GA" },
+  { name: "Ramada", location: "Houston, TX" },
+  { name: "Staybridge Suites", location: "Houston, TX" },
+  { name: "Country Inn & Suites", location: "San Antonio, TX" },
+  { name: "The Resort at Paws Up", location: "Missoula, MT" },
+  { name: "The Mansion at Judges Hill", location: "Austin, TX" },
 ];
 
 export default function TrackRecord() {
@@ -68,14 +102,22 @@ export default function TrackRecord() {
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <div className="absolute inset-0 group-hover:scale-[1.04] transition-transform duration-700">
-                  <Image
-                    src={deal.img}
-                    alt={`${deal.name} — ${deal.location}`}
-                    fill
-                    quality={88}
-                    sizes="(max-width:768px) 50vw, 280px"
-                    className="object-cover"
-                  />
+                  {deal.img ? (
+                    <Image
+                      src={deal.img}
+                      alt={`${deal.name} — ${deal.location}`}
+                      fill
+                      quality={88}
+                      sizes="(max-width:768px) 50vw, 280px"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#1d3a6e] via-[#1a2f5c] to-[#0f1d3d] flex items-center justify-center px-4">
+                      <span className="text-white/90 text-[13px] font-medium tracking-[-0.01em] text-center leading-tight">
+                        {deal.name}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <span className="absolute top-3 left-3 bg-white/95 backdrop-blur rounded-full px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-[#1d1d1f] font-medium">
                   Sold
