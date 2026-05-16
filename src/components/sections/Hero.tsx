@@ -12,7 +12,7 @@ const navItems = [
   "Listings",
   "Under Contract",
   "Track Record",
-  "Team",
+  "Research",
   "Offices",
   "Contact",
 ];
