@@ -13,7 +13,9 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'inline',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    remotePatterns: [],
+    remotePatterns: [
+      { protocol: "https", hostname: "cms.matthews.com" },
+    ],
   },
   reactStrictMode: true,
   poweredByHeader: false,
